@@ -1,39 +1,30 @@
-import type { AuthContextProp } from '../types';
-import React, { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 
-const AuthContext = createContext<AuthContextProp | undefined>(undefined);
+interface AuthContextType {
+  accessToken: string | null;
+  role: string | null;
+  setAccessToken: (token: string) => void;
+  setRole: (role: string) => void;
+}
 
+const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [role, setRole] = useState<'admin' | 'farmer' | null>(null);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem('accessToken'));
+  const [role, setRole] = useState<string | null>(localStorage.getItem('role'));
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('accessToken');
-    const storedRole = localStorage.getItem('role') as 'admin' | 'farmer' | null;
-    if (storedToken) setAccessToken(storedToken);
-    if (storedRole) setRole(storedRole);
-
-    console.log('Auth context state:', { accessToken, role });
-  }, []);
-
-  const logout = () => {
-    setAccessToken(null);
-    setRole(null);
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('role');
-  };
+    if (accessToken) localStorage.setItem('accessToken', accessToken);
+    if (role) localStorage.setItem('role', role);
+  }, [accessToken, role]);
 
   return (
-    <AuthContext.Provider value={{ accessToken, role, setAccessToken, setRole, logout }}>
+    <AuthContext.Provider value={{ accessToken, role, setAccessToken, setRole }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
-  return ctx;
-};
+export const useAuth = () => useContext(AuthContext);

@@ -1,4 +1,3 @@
-
 export interface AuthContextProp {
   accessToken: string | null;
   role: 'admin' | 'farmer' | null;
@@ -6,3 +5,13 @@ export interface AuthContextProp {
   setRole: (role: 'admin' | 'farmer' | null) => void;
   logout: () => void;
 } 
+
+export interface CropByType {
+  crop_type: string;
+  count: number;
+}
+
+export interface CropByType {
+  crop_type: string;
+  count: number;
+}

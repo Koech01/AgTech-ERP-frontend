@@ -12,7 +12,6 @@ const Login = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -26,7 +25,6 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log("Login API response:", data);
 
       if (!response.ok) {
         setError(data.detail || 'Invalid email or password');
@@ -34,7 +32,7 @@ const Login = () => {
         return;
       }
 
-      const { access, role } = data; // ✅ fixed
+      const { access, role } = data;  
       setAccessToken(access);
       setRole(role);
 
@@ -43,13 +41,16 @@ const Login = () => {
       console.log('Login success:', { access, role });
 
       navigate(role === 'admin' ? '/admin' : '/');
-    } catch {
+    } 
+
+    catch {
       setError('Something went wrong. Please try again.');
-    } finally {
+    } 
+    
+    finally {
       setLoading(false);
     }
   };
-
 
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const Login = () => {
 
 
   return (
-    <div className='flex min-h-screen flex-col justify-center px-6 py-12 bg-gray-900 lg:px-8'>
+    <div className='font-myFont flex min-h-screen flex-col justify-center px-6 py-12 bg-gray-900 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
         <h2 className='mb-[0px] pb-[0px] text-center text-2xl font-bold tracking-tight text-white'>
           Sign in to your account.
@@ -125,7 +126,6 @@ const Login = () => {
 
         <p className='mt-1 text-center text-sm text-gray-400'>
           Don't have an account ? {' '}
-          
           <Link
             to='/signup'
             className='font-semibold text-indigo-400 hover:text-indigo-300 ml-[5px]'
@@ -133,8 +133,6 @@ const Login = () => {
             Create account
           </Link>
         </p>
-
-        
       </div>
     </div>
   );

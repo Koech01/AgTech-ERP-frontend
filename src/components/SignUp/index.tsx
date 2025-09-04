@@ -6,6 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const SignUp = () => {
 
   const navigate = useNavigate();
+  const { setAccessToken, setRole } = useAuth();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,28 +39,40 @@ const SignUp = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        if (typeof data === 'object') {
-          const errorMessages = Object.values(data)
-            .flat()
-            .join(' ');
-          setError(errorMessages);
-        } else {
-          setError('Registration failed.');
-        }
+        const errorMessages =
+          typeof data === 'object'
+            ? Object.values(data).flat().join(' ')
+            : 'Registration failed.';
+        setError(errorMessages);
         setLoading(false);
         return;
       }
+ 
+      const { access, refresh } = data.tokens;
+      const { role } = data.user;
 
-      setSuccess('Registration successful! Redirecting to login...');
-      setTimeout(() => navigate('/login'), 1500);
-    } catch {
+      setAccessToken(access);
+      setRole(role);
+
+      localStorage.setItem('accessToken', access);
+      localStorage.setItem('role', role);
+      localStorage.setItem('refreshToken', refresh);
+
+      setSuccess('Registration successful! Redirecting...');
+      setTimeout(() => {
+        navigate(role === 'admin' ? '/admin' : '/');
+      }, 1000);
+    } 
+    
+    catch {
       setError('Something went wrong. Please try again.');
-    } finally {
+    } 
+    
+    finally {
       setLoading(false);
     }
   };
 
-  
   useEffect(() => {
     if (!error) return;
     const timer = setTimeout(() => setError(null), 5000);
@@ -68,7 +81,7 @@ const SignUp = () => {
 
   
   return (
-    <div className='flex min-h-screen flex-col justify-center px-6 py-12 bg-gray-900 lg:px-8'>
+    <div className='font-myFont flex min-h-screen flex-col justify-center px-6 py-12 bg-gray-900 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
         <h2 className='mb-[0px] pb-[0px] text-center text-2xl font-bold tracking-tight text-white'>
           Create a new account
