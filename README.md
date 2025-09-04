@@ -72,8 +72,7 @@ export default {
 
 Start the development server::
 ```bash
-npm run dev -- --host
-}
+npm run dev 
 ```
 
 # Demo Credentials
@@ -82,6 +81,5 @@ npm run dev -- --host
 
 # Notes
 - The project is responsive and supports role-based dashboards: Admin vs Farmer.
--Charts visualize crops per farmer (Admin) or crops by type (Farmer).
--Sidebar navigation allows easy switching between modules.
--All API requests should point to the backend URL configured in VITE_API_URL.
+- Charts visualize crops per farmer (Admin) or crops by type (Farmer).
+- Sidebar navigation allows easy switching between modules. 
