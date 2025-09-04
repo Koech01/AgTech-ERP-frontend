@@ -306,7 +306,7 @@ const Crops = () => {
 
  
             <div className=" mb-5">
-              <label htmlFor="email" className="block text-sm/6 font-semibold text-white">Quantity</label>
+              <label htmlFor="email" className="block text-sm/6 font-semibold text-white">Quantity (Kgs)</label>
               <input
                 id="quantity"
                 name="quantity"
