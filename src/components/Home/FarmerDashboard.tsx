@@ -22,7 +22,7 @@ const FarmerDashboard = () => {
   const [totalCrops, setTotalCrops] = useState<number>(0);
   const [rank, setRank] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-
+  const [username, setUsername] = useState<string>("");  
 
   useEffect(() => {
     const fetchCropStats = async () => {
@@ -44,6 +44,7 @@ const FarmerDashboard = () => {
           return found || crop;
         });
 
+        setUsername(data.username);
         setCropsByType(mergedData);
         setTotalCrops(data.total_count);
         setRank(data.rank);
@@ -54,6 +55,7 @@ const FarmerDashboard = () => {
         setCropsByType(DEFAULT_CROP_TYPES);
         setTotalCrops(0);
         setRank(null);
+        setUsername("User");
       } 
       
       finally { setLoading(false); }
@@ -94,7 +96,7 @@ const FarmerDashboard = () => {
 
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <p className="text-sm/6 text-gray-100">
-            <strong className="font-semibold">Koech</strong>
+            <strong className="font-semibold">{username.charAt(0).toUpperCase() + username.slice(1)}</strong>
             <svg viewBox="0 0 2 2" aria-hidden="true" className="mx-2 inline size-0.5 fill-current">
               <circle r={1} cx={1} cy={1} />
             </svg>
