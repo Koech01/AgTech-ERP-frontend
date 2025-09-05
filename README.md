@@ -77,8 +77,8 @@ npm run dev
 ```
 
 # Demo Credentials
-  - Admin  : email-admin@agritech.com  | password-Admin@123
-  - Farmer : koech@agritech.com  | Koech@123
+  - Admin  : admin@agritech.com | password-Admin@123
+  - Farmer : koech@agritech.com | Koech@123
 
 # Notes
 - The project is responsive and supports role-based dashboards: Admin vs Farmer.
