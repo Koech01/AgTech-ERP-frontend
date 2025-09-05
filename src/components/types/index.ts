@@ -7,11 +7,7 @@ export interface AuthContextProp {
 } 
 
 export interface CropByType {
-  crop_type: string;
-  count: number;
-}
-
-export interface CropByType {
+  name: string[];  
   crop_type: string;
   count: number;
 }

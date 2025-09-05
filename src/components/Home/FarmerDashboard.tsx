@@ -5,13 +5,13 @@ import FarmerChart from "../Chart/FarmerChart";
 
 
 const DEFAULT_CROP_TYPES: CropByType[] = [
-  { crop_type: 'Cereal/Grain', count: 0 },
-  { crop_type: 'Legume', count: 0 },
-  { crop_type: 'Vegetable', count: 0 },
-  { crop_type: 'Fruit', count: 0 },
-  { crop_type: 'Root/Tuber', count: 0 },
-  { crop_type: 'Oil Crop', count: 0 },
-  { crop_type: 'Fodder/Forage', count: 0 },
+  { name: [], crop_type: 'Cereal/Grain', count: 0 },
+  { name: [], crop_type: 'Legume', count: 0 },
+  { name: [], crop_type: 'Vegetable', count: 0 },
+  { name: [], crop_type: 'Fruit', count: 0 },
+  { name: [], crop_type: 'Root/Tuber', count: 0 },
+  { name: [], crop_type: 'Oil Crop', count: 0 },
+  { name: [], crop_type: 'Fodder/Forage', count: 0 },
 ];
 
 
