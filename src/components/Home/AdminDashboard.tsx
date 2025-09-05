@@ -121,7 +121,7 @@ const AdminDashboard = () => {
       </div> 
 
       <div className="w-full">   
-        {cropsPerFarmer.length > 0 && !loading && (<h5 className="text-xl font-bold dark:text-white text-center mt-5 mb-5 sm:mt-5 sm:mb-0">Total Crops per Farmer</h5>)}
+        {cropsPerFarmer.length > 0 && !loading && (<h5 className="text-xl font-bold dark:text-white text-center mt-8 mb-8 sm:mt-5 sm:mb-0">Total Crops per Farmer</h5>)}
         <AdminChart data={cropsPerFarmer} loading={loading}/>
       </div>
     </div>

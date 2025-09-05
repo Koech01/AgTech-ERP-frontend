@@ -22,8 +22,8 @@ const AdminChart: React.FC<AdminChartProps> = ({ data, loading }) => {
   const isEmpty = dataset.length === 0;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); 
-  const chartMargin = isMobile ? { left: 0, right: 25, top: 10, bottom: 0 } : { left: 0, right: 0, top: 0, bottom: 40 }; 
-  const chartHeight = isMobile ? 350 : 300; 
+  const chartMargin = isMobile ? { left: 0, right: 25, top: 0, bottom: 0 } : { left: 0, right: 0, top: 0, bottom: 40 }; 
+  const chartHeight = isMobile ? 370 : 300; 
 
   if (loading) {
     return (
