@@ -6,7 +6,7 @@ AgTech ERP platform built with React + TypeScript. It provides Admin users with 
  - Overview 
  - Prerequisites
  - Installation
- - Project Setup & Environment
+ - Project Setup
  - Running the Project
  - Demo Credentials
 
@@ -49,15 +49,10 @@ npm install react-router-dom@latest
 npm install --save-dev @types/react-router-dom
 ```
 
-# Project Setup & Environment.
+# Project Setup.
 Configure the environment:
 
-1. Configure TailwindCSS:
-```bash
-touch .env 
-```
-
-2. Update tailwind.config.js:
+1. Create tailwind.config.js:
 ```bash
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -69,8 +64,17 @@ export default {
 }
 ```
 
-# Running the Project.
+2. Create postcss.config.js:
+```bash
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+    autoprefixer: {},
+  },
+};
+```
 
+# Running the Project.
 Start the development server::
 ```bash
 npm run dev 
