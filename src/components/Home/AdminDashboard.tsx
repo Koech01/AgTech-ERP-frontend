@@ -112,7 +112,7 @@ const AdminDashboard = () => {
 
               <div className="flex flex-col items-center justify-center">
                 <dt className="mb-1 text-3xl font-extrabold">{totalCrops}</dt>
-                <dd className="text-gray-500 dark:text-gray-400"> {totalCrops === 1 ? "Total Crop Quantity (kg)" : "Total Crop Quantity (kgs)"}</dd>
+                <dd className="text-gray-500 dark:text-gray-400"> {totalCrops === 1 ? "Crop Quantity (kg)" : "Crop Quantity (kgs)"}</dd>
               </div>
             </dl>
 
@@ -121,7 +121,7 @@ const AdminDashboard = () => {
       </div> 
 
       <div className="w-full">   
-        {cropsPerFarmer.length > 0 && !loading && (<h5 className="text-xl font-bold dark:text-white text-center my-3">Total Crops per Farmer</h5>)}
+        {cropsPerFarmer.length > 0 && !loading && (<h5 className="text-xl font-bold dark:text-white text-center mt-5 mb-5 sm:mt-5 sm:mb-0">Total Crops per Farmer</h5>)}
         <AdminChart data={cropsPerFarmer} loading={loading}/>
       </div>
     </div>

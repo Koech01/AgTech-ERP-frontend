@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box } from '@mui/material';
 import type { CropByType } from '../types';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 
 type FarmerChartProps = {
@@ -15,7 +15,10 @@ const FarmerChart: React.FC<FarmerChartProps> = ({ data, loading }) => {
 
   const dataset = data.map(d => ({crop: d.crop_type, count: Number(d.count || 0),}));
   const isEmpty = dataset.every(d => d.count === 0);
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); 
+  const chartMargin = isMobile ? { left: 0, right: 0, top: 0, bottom: 10 } : { left: 0, right: 0, top: 0, bottom: 40 }; 
+  const chartHeight = isMobile ? 380 : 350; 
 
   if (loading) {
     return (
@@ -25,9 +28,8 @@ const FarmerChart: React.FC<FarmerChartProps> = ({ data, loading }) => {
     );
   }
  
-
   return (
-    <Box className="w-full"> 
+    <Box className="w-full sm:border-0 pl-0 ml-0 sm:p-4 sm:ml-4"> 
       {!loading && isEmpty ? (
         <div id="alert-additional-content-1" className="p-4 mt-5 text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
           <div className="flex items-center">
@@ -64,8 +66,8 @@ const FarmerChart: React.FC<FarmerChartProps> = ({ data, loading }) => {
             },
           ]}
           series={[{ dataKey: 'count', color: 'url(#CropPattern)' }]} // use pattern
-          height={350}
-          margin={{ left: 40, right: 20, top: 20, bottom: 40 }}
+          height={chartHeight}
+          margin={chartMargin} 
           sx={{
             [`.${axisClasses.root}`]: {
               [`.${axisClasses.line}`]: { stroke: '#A3A3A3', strokeWidth: 2 },

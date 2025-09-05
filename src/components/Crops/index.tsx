@@ -132,37 +132,34 @@ const Crops = () => {
         {!showForm && (
           <div className="pb-4 bg-white dark:bg-gray-900">
             <label htmlFor="table-search" className="sr-only">Search</label>
-            <div className="relative mt-1 flex items-center justify-between">
-              <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                </svg>
-              </div>
-
+            <div className="relative mt-1 flex flex-col md:flex-row items-start md:items-center justify-start md:space-x-7 space-y-3 md:space-y-0">
+ 
               <input 
                 type="text" 
                 id="table-search" 
                 className="block text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 h-10 ps-10 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                placeholder="Search for items"  
+                placeholder="Search for crops"  
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
 
-              <button
-                type="button"
-                className="inline-flex items-center py-2 px-3 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white"
-                onClick={() => { setShowForm(true); console.log("ShowForm:", true); }}
-              >Add Crop</button>
+              <div className="flex flex-row items-center gap-4">
+                <button
+                  type="button"
+                  className="inline-flex items-center py-2 px-3 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white"
+                  onClick={() => { setShowForm(true); console.log("ShowForm:", true); }}
+                >Add Crop</button>
 
-              {selectedIds.length > 0 && (
-                <button 
-                onClick={() => setIsDeleteModalOpen(true)} 
-                type="button" 
-                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                >
-                  Delete
-                </button>
-              )}
+                {selectedIds.length > 0 && (
+                  <button 
+                  onClick={() => setIsDeleteModalOpen(true)} 
+                  type="button" 
+                  className="inline-flex items-center py-2 px-3 text-xs font-medium text-white bg-red-700 border border-red-700 rounded-lg hover:bg-red-800 hover:border-red-800 focus:outline-none focus:ring-2 focus:ring-red-300 dark:bg-red-600 dark:border-red-600 dark:hover:bg-red-700 dark:hover:border-red-700 dark:focus:ring-red-900"
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div> 
           </div> 
         )} 

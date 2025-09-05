@@ -41,10 +41,11 @@ npm install
 
 3. Install additional packages:
 ```bash
-npm install tailwindcss @tailwindcss/vite
+npm install tailwindcss @tailwindcss/vite postcss autoprefixer
+npx tailwindcss init -p
 npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 npm install @mui/x-charts
-npm install react-router-dom
+npm install react-router-dom@latest
 npm install --save-dev @types/react-router-dom
 ```
 

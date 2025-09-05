@@ -63,9 +63,9 @@ const FarmerDashboard = () => {
   }, [accessToken]);
 
   return (
-    <div className="font-myFont p-4 sm:ml-64">
+    <div className="font-myFont p-4 h-[90vh] flex flex-col sm:border-0 sm:ml-64 sm:h-auto sm:flex-none sm:justify-start">
        
-      <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-800/50 px-6 py-2.5 rounded-tl-[8px] rounded-tr-[12px] border-t border-t-white/10 sm:px-3.5 sm:before:flex-1">
+      <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-800/50 px-6 py-2.5 rounded-tl-[8px] rounded-tr-[12px] border-t sm:px-3.5 sm:before:flex-1">
         <div
           aria-hidden="true"
           className="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
@@ -110,7 +110,7 @@ const FarmerDashboard = () => {
       </div>
 
 
-      <div className="w-full bg-white border border-gray-200 border-t-0 rounded-lg rounded-t-none shadow-sm dark:bg-gray-800 dark:border-gray-700 mt-0">
+      <div className="w-full bg-white border-t-0 rounded-lg rounded-t-none shadow-sm dark:bg-gray-800 dark:border-gray-700 mt-0">
         <div id="fullWidthTabContent" className="border-t border-gray-200 dark:border-gray-600">
           <div className=" p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="stats" role="tabpanel" aria-labelledby="stats-tab">
 
@@ -122,7 +122,7 @@ const FarmerDashboard = () => {
 
               <div className="flex flex-col items-center justify-center">
                 <dt className="mb-1 text-3xl font-extrabold">{totalCrops}</dt>
-                <dd className="text-gray-500 dark:text-gray-400">   {totalCrops === 1 ? "Total Crop Quantity (kg)" : "Total Crop Quantity (kgs)"}</dd>
+                <dd className="text-gray-500 dark:text-gray-400">   {totalCrops === 1 ? "Crop Quantity (kg)" : "Crop Quantity (kgs)"}</dd>
               </div>
             </dl>
 
@@ -131,7 +131,9 @@ const FarmerDashboard = () => {
       </div> 
 
       <div className="w-full">  
-        {cropsByType && cropsByType.some(crop => crop.count > 0) && (<h5 className="text-xl font-bold dark:text-white text-center my-3">Crop Quantities by Type</h5> )}
+        {cropsByType && cropsByType.some(crop => crop.count > 0) && (
+          <h5 className="text-xl font-bold dark:text-white text-center mt-10 mb-10 sm:mt-5 sm:mb-0">Crop Quantities by Type</h5> 
+        )}
          <FarmerChart data={cropsByType} loading={loading} />
       </div>
     </div>
