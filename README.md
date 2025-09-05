@@ -77,6 +77,7 @@ npm run dev
 ```
 
 # Demo Credentials
+  - Link   : [Ag Tech ERP](https://ag-tech-erp-frontend-deploy.vercel.app/)
   - Admin  : admin@agritech.com | password-Admin@123
   - Farmer : koech@agritech.com | Koech@123
 
