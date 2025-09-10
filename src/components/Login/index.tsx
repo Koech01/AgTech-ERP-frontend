@@ -34,12 +34,7 @@ const Login = () => {
 
       const { access, role } = data;  
       setAccessToken(access);
-      setRole(role);
-
-      localStorage.setItem('accessToken', access);
-      localStorage.setItem('role', role);
-      console.log('Login success:', { access, role });
-
+      setRole(role); 
       navigate(role === 'admin' ? '/admin' : '/');
     } 
 

@@ -50,7 +50,11 @@ const AdminChart: React.FC<AdminChartProps> = ({ data, loading }) => {
             <h3 className="text-lg font-medium">No Data Available.</h3>
           </div>
 
-          <div className="mt-2 mb-4 text-sm">This chart will display the crops quantity (kgs) per farmer once crops are added.</div> 
+          <div className="mt-2 mb-4 text-sm">
+            This chart will display the crops quantity (kgs) per farmer once crops are added.<br/>
+            <b>Note: </b>This project is hosted on a free Render instance, which may spin down when inactive.<br/>
+            If the application seems unresponsive, please log out and sign in again to refresh the connection.
+          </div> 
         </div> 
       ) : ( 
         <LineChart

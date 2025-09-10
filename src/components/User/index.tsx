@@ -3,11 +3,13 @@ import { useAuth } from '../Auth/authContext';
 
 
 const UserProfile = () => {
+
   const { accessToken } = useAuth();
   const [user, setUser] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({ username: '',   email: '', profile_icon: null as File | null   });
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [selectedProfileIcon, setSelectedProfileIcon] = useState<File | null>(null);
 
 
@@ -77,26 +79,39 @@ const UserProfile = () => {
         body: payload,
       });
 
-     const data = await response.json();
+      const data = await response.json();
 
-    if (!response.ok) {
-      setErrorMessage(data.error || "Failed to update profile. Please try again.");
-      return;
-    }
+      if (!response.ok) {
+        setErrorMessage(data.error || "Failed to update profile. Please try again.");
+        return;
+      }
 
-    let updatedProfileIcon = data.profile_icon;
-    if (selectedProfileIcon) {
-      updatedProfileIcon = URL.createObjectURL(selectedProfileIcon);
-    }
- 
-    setUser({ ...data, profile_icon: updatedProfileIcon });
-    setIsEditing(false);
-  } 
-  
-  catch (err) {
-    setErrorMessage("Network error. Please check your connection and try again.");
-  }
-};
+      let updatedProfileIcon = data.profile_icon;
+      if (selectedProfileIcon) {
+        updatedProfileIcon = URL.createObjectURL(selectedProfileIcon);
+      }
+
+      setUser({ ...data, profile_icon: updatedProfileIcon });
+
+      const usernameChanged = formData.username !== user.username;
+      const profileIconChanged = Boolean(selectedProfileIcon);
+
+      if (usernameChanged || profileIconChanged) {
+        setSuccessMessage('Profile updated successfully!');
+
+        setTimeout(() => {
+          setSuccessMessage("");
+          setIsEditing(false);
+        }, 2000);
+
+      } 
+      
+      else { setIsEditing(false); }
+
+    } 
+    
+    catch (error) { setErrorMessage("Network error. Please check your connection and try again."); }
+  };
 
   return (
     <div className="font-myFont p-4 sm:ml-64 flex flex-col items-center"> 
@@ -172,6 +187,19 @@ const UserProfile = () => {
           </div>
 
           <form className="mx-auto mt-0 pt-0 max-w-xl sm:mt-20" onSubmit={handleSubmit}>
+
+            {successMessage && (
+              <div className="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                <svg className="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span className="sr-only">Info</span>
+                <div>
+                  <span className="font-medium">Success !</span> {successMessage}
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2 pt-0">  
                 <div className=" "> 
