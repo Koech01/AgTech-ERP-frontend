@@ -18,6 +18,7 @@ const CROP_TYPES = [
 interface Crop {
   id: number;
   name: string;
+  farmer: string;
   crop_type: string;
   quantity: number;
   created: string;
@@ -36,7 +37,7 @@ const Crops = () => {
   const [formData, setFormData] = useState({name: "", crop_type: "", quantity: "",});
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { accessToken } = useAuth();
+  const { accessToken, role } = useAuth();
 
 
   const fetchCrops = async () => {
@@ -249,7 +250,9 @@ const Crops = () => {
                           <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{crop.name}</th>
                           <td className="px-6 py-4">{CROP_TYPES.find((t) => t.value === crop.crop_type)?.label}</td>
                           <td className="px-6 py-4">{crop.quantity}</td>
-                          <td className="px-6 py-4">{new Date(crop.created).toLocaleDateString()}</td>
+                          <td className="px-6 py-4">
+                            {role === "farmer" ? new Date(crop.created).toLocaleDateString() : crop.farmer}
+                          </td>
                           <td className="px-6 py-4">
                             <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                               onClick={() => {

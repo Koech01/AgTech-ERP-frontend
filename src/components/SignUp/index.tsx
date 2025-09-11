@@ -40,23 +40,17 @@ const SignUp = () => {
 
       if (!response.ok) {
         const errorMessages =
-          typeof data === 'object'
-            ? Object.values(data).flat().join(' ')
-            : 'Registration failed.';
+          typeof data === 'object' ? Object.values(data).flat().join(' ') : 'Registration failed.';
         setError(errorMessages);
         setLoading(false);
         return;
       }
  
-      const { access, refresh } = data.tokens;
+      const { access } = data.tokens;
       const { role } = data.user;
 
       setAccessToken(access);
-      setRole(role);
-
-      localStorage.setItem('accessToken', access);
-      localStorage.setItem('role', role);
-      localStorage.setItem('refreshToken', refresh);
+      setRole(role); 
 
       setSuccess('Registration successful! Redirecting...');
       setTimeout(() => {
@@ -64,15 +58,12 @@ const SignUp = () => {
       }, 1000);
     } 
     
-    catch {
-      setError('Something went wrong. Please try again.');
-    } 
+    catch { setError('Something went wrong. Please try again.'); } 
     
-    finally {
-      setLoading(false);
-    }
+    finally { setLoading(false); }
   };
 
+  
   useEffect(() => {
     if (!error) return;
     const timer = setTimeout(() => setError(null), 5000);
