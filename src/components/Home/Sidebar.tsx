@@ -33,6 +33,7 @@ const Sidebar = ({ items, isOpen, onClose }: SidebarProps) => {
       });
 
       if (response.ok) {
+        localStorage.removeItem("role");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         navigate("/login");
