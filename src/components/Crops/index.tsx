@@ -228,7 +228,7 @@ const Crops = () => {
                         <th scope="col" className="px-6 py-3">Crop Name</th>
                         <th scope="col" className="px-6 py-3">Type</th>
                         <th scope="col" className="px-6 py-3">Quantity (Kgs)</th>
-                        <th scope="col" className="px-6 py-3">Created On</th> 
+                        <th scope="col" className="px-6 py-3">User</th> 
                         <th scope="col" className="px-6 py-3">Update</th> 
                       </tr>
                     </thead>
