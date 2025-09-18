@@ -11,7 +11,7 @@ AgTech ERP platform built with React + TypeScript. It provides Admin users with 
 
 
 # Overview
-  - React 18.x + TypeScript
+  - React 19.x + TypeScript
   - TailwindCSS
   - Material UI 
   - React Router DOM
